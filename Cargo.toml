@@ -39,6 +39,7 @@ ec-gpu-gen = { version = "0.7.0" }
 
 
 fs2 = { version = "0.4.3", optional = true }
+supraseal-c2 = { git = "https://github.com/supranational/supra_seal.git", optional = true }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 memmap2 = "0.5.8"
@@ -61,6 +62,7 @@ default = ["groth16"]
 cuda = ["ec-gpu-gen/cuda", "fs2", "blstrs/gpu"]
 opencl = ["ec-gpu-gen/opencl", "fs2", "blstrs/gpu"]
 groth16 = []
+cuda-supraseal = ["supraseal-c2"]
 
 # This feature disables/modifies long running tests to make the suitable for code coverage
 # reporting
@@ -92,3 +94,13 @@ members = [
 blstrs = { version = "0.7.0", features = ["__private_bench"] }
 ec-gpu-gen = { version = "0.7.0" }
 rustversion = "1.0.6"
+
+[patch.crates-io]
+# `supraseal-c2` needs a non yet released version of `blst`. It doesn't need it
+# for their rust, but for their C++ code.
+blst = { git = "https://github.com/supranational/blst" }
+# Patching `sppark` is needed as supraseal-c2 depends on `sppark` master, but
+# defines the latest released version in its `Cargo.toml`
+# Once `supraseal-c2` is properly released, we won't need that patch anymore,
+# as this library doesn't have a direct dependency on `sppark
+sppark = { git = "https://github.com/supranational/sppark" }
