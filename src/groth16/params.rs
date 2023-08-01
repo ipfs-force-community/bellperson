@@ -412,6 +412,7 @@ where
     type G1Builder: SourceBuilder<E::G1Affine>;
     type G2Builder: SourceBuilder<E::G2Affine>;
 
+    fn get_file_path(&self) -> PathBuf;
     fn get_vk(&self, num_ic: usize) -> Result<&VerifyingKey<E>, SynthesisError>;
     fn get_h(&self, num_h: usize) -> Result<Self::G1Builder, SynthesisError>;
     fn get_l(&self, num_l: usize) -> Result<Self::G1Builder, SynthesisError>;
@@ -438,6 +439,10 @@ where
 {
     type G1Builder = (Arc<Vec<E::G1Affine>>, usize);
     type G2Builder = (Arc<Vec<E::G2Affine>>, usize);
+
+    fn get_file_path(&self) -> PathBuf {
+        PathBuf::from("")
+    }
 
     fn get_vk(&self, _: usize) -> Result<&VerifyingKey<E>, SynthesisError> {
         Ok(&self.vk)

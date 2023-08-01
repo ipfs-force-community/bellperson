@@ -19,7 +19,7 @@ pub struct MappedParameters<E>
 where
     E: MultiMillerLoop,
 {
-    /// The parameter file we're reading from.  
+    /// The parameter file we're reading from.
     pub param_file_path: PathBuf,
     /// The file descriptor we have mmaped.
     pub param_file: File,
@@ -59,6 +59,10 @@ where
 {
     type G1Builder = (Arc<Vec<E::G1Affine>>, usize);
     type G2Builder = (Arc<Vec<E::G2Affine>>, usize);
+
+    fn get_file_path(&self) -> PathBuf {
+        return self.param_file_path.clone();
+    }
 
     fn get_vk(&self, _: usize) -> Result<&VerifyingKey<E>, SynthesisError> {
         Ok(&self.vk)

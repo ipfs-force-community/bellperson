@@ -36,6 +36,7 @@ blstrs = { version = "0.6.0", features = ["__private_bench"] }
 pairing = "0.22"
 ec-gpu = { version = "0.2.0" }
 ec-gpu-gen = { version = "0.5.0" }
+supraseal-c2 = { git = "https://github.com/supranational/supra_seal.git", rev="8097865", optional = true }
 
 fs2 = { version = "0.4.3", optional = true }
 
@@ -60,6 +61,7 @@ default = ["groth16"]
 cuda = ["ec-gpu-gen/cuda", "fs2", "blstrs/gpu"]
 opencl = ["ec-gpu-gen/opencl", "fs2", "blstrs/gpu"]
 groth16 = []
+supra-c2 = ["supraseal-c2"]
 
 # This feature disables/modifies long running tests to make the suitable for code coverage
 # reporting
