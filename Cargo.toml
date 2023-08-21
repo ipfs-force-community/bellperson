@@ -36,7 +36,7 @@ blstrs = { version = "0.6.0", features = ["__private_bench"] }
 pairing = "0.22"
 ec-gpu = { version = "0.2.0" }
 ec-gpu-gen = { version = "0.5.0" }
-supraseal-c2 = { git = "https://github.com/supranational/supra_seal.git", rev="443a619", optional = true }
+supraseal-c2 = { git = "https://github.com/supranational/supra_seal.git", rev="44d54a2", optional = true }
 
 fs2 = { version = "0.4.3", optional = true }
 
